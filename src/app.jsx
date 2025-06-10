@@ -1,21 +1,13 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import { Header } from './Components/Header'
-import { HeroSection } from './Components/HeroSection'
-import { Features } from './Components/Features'
-import Testimonials from './Components/Testimonials'
-import { Pricing } from './Components/Pricing'
-import { Footer } from './Components/Footer'
+import { ProductProvider } from './context/ProductContext'
+import { Store } from './pages/Store'
+import { GlobalStyle } from './styles/GlobalStyle .jsx'
 
-const App = () => {
+function App() {
   return (
-    <Router>
-      <Header />
-      <HeroSection />
-      <Features />
-      <Testimonials />
-      <Pricing />
-      <Footer />
-    </Router>
+    <ProductProvider>
+      <GlobalStyle />
+      <Store />
+    </ProductProvider>
   )
 }
 
