@@ -33,12 +33,36 @@ export const ProductsGrid = styled.div`
 
 export const FloatingCartButton = styled.button`
   position: fixed;
-  bottom: 30px;
+  bottom: 40px;
   right: 30px;
+  background-color: #222;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 998;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #333;
+  }
 `
 
-export const ItemCounter = styled.span`
-  position: absolute;
-  top: -5px;
-  right: -5px;
+export const ItemCounter = styled.p`
+  position: fixed;
+  bottom: 10px;
+  right: 34px;
+  color: #b83242;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 20px;
+  z-index: 999;
+  transition: background-color 0.3s ease;
+  text-align: center;
 `

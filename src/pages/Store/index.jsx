@@ -41,7 +41,7 @@ const Store = () => {
       </ProductsGrid>
 
       <FloatingCartButton onClick={openCart}>
-        <FaShoppingCart />
+        <FaShoppingCart style={{ height: 30, width: 30 }} />
         {totalItemsInCart > 0 && <ItemCounter>{totalItemsInCart}</ItemCounter>}
       </FloatingCartButton>
 
