@@ -1,8 +1,8 @@
 import { useEffect } from 'react'
-import { useProducts } from '../../context/ProductContext'
-import { FaShoppingCart } from 'react-icons/fa'
+import { useProducts } from '../../services/ProductContext'
 import { ProductCard } from '../../Components/ProductCard'
 import { ShoppingCart } from '../../Components/ShoppingCart'
+import { FaShoppingCart } from 'react-icons/fa'
 import {
   StoreContainer,
   StoreHeader,
@@ -30,7 +30,7 @@ const Store = () => {
   return (
     <StoreContainer>
       <StoreHeader>
-        <Logo src="loguinho.png" alt="Logo Carmen Fontoura" />
+        <Logo src="logo_Carmen_Fontora.png" alt="Logo Carmen Fontoura" />
         <StoreTitle>Loja Carmen Fontoura</StoreTitle>
       </StoreHeader>
 

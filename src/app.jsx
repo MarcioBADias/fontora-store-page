@@ -1,11 +1,9 @@
-import { ProductProvider } from './context/ProductContext'
-import { Store } from './pages/Store'
-import { GlobalStyle } from './styles/GlobalStyle .jsx'
+import { Store } from './pages/Store/index.jsx'
+import { ProductProvider } from './services/ProductContext.jsx'
 
 function App() {
   return (
     <ProductProvider>
-      <GlobalStyle />
       <Store />
     </ProductProvider>
   )

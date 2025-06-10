@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext } from 'react'
-import { mockProducts } from '../services/productsData'
+import { mockProducts } from './productData'
 
 const initialState = {
   products: [],

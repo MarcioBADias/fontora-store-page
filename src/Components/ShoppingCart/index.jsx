@@ -1,4 +1,4 @@
-import { useProducts } from '../../context/ProductContext'
+import { useProducts } from '../../services/ProductContext'
 import {
   Backdrop,
   ModalContainer,
