@@ -1,7 +1,25 @@
 import styled from 'styled-components'
 
-export const Backdrop = styled.div``
-export const ModalContainer = styled.div``
+export const Backdrop = styled.div`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+`
+export const ModalContainer = styled.div`
+  background-color: white;
+  padding: 2rem;
+  border-radius: 10px;
+  z-index: 1000;
+  max-height: 90vh;
+  overflow-y: auto;
+`
 export const ModalHeader = styled.div``
 
 export const CloseButton = styled.button`
@@ -41,9 +59,15 @@ export const QuantityControls = styled.div`
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  /* ... */
 `
-
+export const QtdyBtn = styled.button`
+  margin-right: 10;
+  padding-right: 8;
+  padding-left: 8;
+  background-color: '#222';
+  color: 'white';
+  border-radius: 10;
+`
 export const ModalFooter = styled.div``
 export const TotalInfo = styled.h3``
 

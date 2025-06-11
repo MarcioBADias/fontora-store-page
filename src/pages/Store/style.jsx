@@ -50,18 +50,18 @@ export const FloatingCartButton = styled.button`
   transition: background-color 0.3s ease;
 
   &:hover {
-    background-color: #333;
+    background-color: #b83242;
   }
 `
 
 export const ItemCounter = styled.p`
   position: fixed;
-  bottom: 10px;
-  right: 34px;
-  color: #b83242;
+  bottom: 18px;
+  right: 40px;
+  color: white;
   cursor: pointer;
   font-weight: bold;
-  font-size: 20px;
+  font-size: 15px;
   z-index: 999;
   transition: background-color 0.3s ease;
   text-align: center;

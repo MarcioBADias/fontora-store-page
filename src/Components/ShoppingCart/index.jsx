@@ -64,11 +64,31 @@ const ShoppingCart = () => {
                   <p>R$ {item.price.toFixed(2)}</p>
                 </ItemInfo>
                 <QuantityControls>
-                  <button onClick={() => handleQuantityChange(item.id, -1)}>
+                  <button
+                    style={{
+                      marginRight: 10,
+                      paddingRight: 8,
+                      paddingLeft: 8,
+                      backgroundColor: '#222',
+                      color: 'white',
+                      borderRadius: 10,
+                    }}
+                    onClick={() => handleQuantityChange(item.id, -1)}
+                  >
                     -
                   </button>
                   <span>{item.quantity}</span>
-                  <button onClick={() => handleQuantityChange(item.id, 1)}>
+                  <button
+                    style={{
+                      marginLeft: 10,
+                      paddingRight: 8,
+                      paddingLeft: 8,
+                      backgroundColor: '#222',
+                      color: 'white',
+                      borderRadius: 10,
+                    }}
+                    onClick={() => handleQuantityChange(item.id, 1)}
+                  >
                     +
                   </button>
                 </QuantityControls>
