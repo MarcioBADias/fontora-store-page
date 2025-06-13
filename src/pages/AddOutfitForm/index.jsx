@@ -1,76 +1,23 @@
-import { useState } from 'react'
-import { supabase } from '../../services/supabase'
+import { useAddOutfitForm } from '../../hooks/useAddOutfitForm'
 import { Container, Form, Label, Input, Button, Message } from './style'
 
 const AddOutfitForm = () => {
-  const [name, setName] = useState('')
-  const [price, setPrice] = useState('')
-  const [quantity, setQuantity] = useState('')
-  const [group, setGroup] = useState('')
-  const [imageFile, setImageFile] = useState(null)
+  const { state, dispatch, handleSubmit } = useAddOutfitForm()
 
-  const [isLoading, setIsLoading] = useState(false)
-  const [message, setMessage] = useState(null)
+  const handleFieldChange = (e) => {
+    dispatch({
+      type: 'SET_FIELD',
+      field: e.target.id,
+      value: e.target.value,
+    })
+  }
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsLoading(true)
-    setMessage(null)
-
-    if (!name || !price || !quantity || !group || !imageFile) {
-      setMessage({
-        type: 'error',
-        text: 'Por favor, preencha todos os campos e selecione uma imagem.',
-      })
-      setIsLoading(false)
-      return
-    }
-
-    try {
-      const fileName = `${Date.now()}_${imageFile.name}`
-      const filePath = `public/${fileName}`
-
-      const { error: uploadError } = await supabase.storage
-        .from('outfits-images')
-        .upload(filePath, imageFile)
-
-      if (uploadError) {
-        throw uploadError
-      }
-
-      const { data: urlData } = supabase.storage
-        .from('outfits-images')
-        .getPublicUrl(filePath)
-
-      const publicUrl = urlData.publicUrl
-
-      const { error: insertError } = await supabase.from('outfit').insert([
-        {
-          name,
-          price: parseFloat(price),
-          quantity: parseInt(quantity, 10),
-          group,
-          urlImage: publicUrl,
-        },
-      ])
-
-      if (insertError) {
-        throw insertError
-      }
-
-      setMessage({ type: 'success', text: 'Peça cadastrada com sucesso!' })
-      setName('')
-      setPrice('')
-      setQuantity('')
-      setGroup('')
-      setImageFile(null)
-      e.target.reset()
-    } catch (error) {
-      console.error('Erro ao cadastrar peça:', error)
-      setMessage({ type: 'error', text: `Ocorreu um erro: ${error.message}` })
-    } finally {
-      setIsLoading(false)
-    }
+  const handleFileChange = (e) => {
+    dispatch({
+      type: 'SET_FIELD',
+      field: 'imageFile',
+      value: e.target.files[0],
+    })
   }
 
   return (
@@ -81,8 +28,8 @@ const AddOutfitForm = () => {
         <Input
           type="text"
           id="name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          value={state.name}
+          onChange={handleFieldChange}
         />
 
         <Label htmlFor="group">Grupo/Categoria</Label>
@@ -90,8 +37,8 @@ const AddOutfitForm = () => {
           type="text"
           id="group"
           placeholder="Ex: Vestidos, Calças, Blusas"
-          value={group}
-          onChange={(e) => setGroup(e.target.value)}
+          value={state.group}
+          onChange={handleFieldChange}
         />
 
         <Label htmlFor="price">Valor (ex: 189.90)</Label>
@@ -99,16 +46,16 @@ const AddOutfitForm = () => {
           type="number"
           id="price"
           step="0.01"
-          value={price}
-          onChange={(e) => setPrice(e.target.value)}
+          value={state.price}
+          onChange={handleFieldChange}
         />
 
         <Label htmlFor="quantity">Quantidade</Label>
         <Input
           type="number"
           id="quantity"
-          value={quantity}
-          onChange={(e) => setQuantity(e.target.value)}
+          value={state.quantity}
+          onChange={handleFieldChange}
         />
 
         <Label htmlFor="imageFile">Imagem da Peça</Label>
@@ -116,14 +63,16 @@ const AddOutfitForm = () => {
           type="file"
           id="imageFile"
           accept="image/png, image/jpeg"
-          onChange={(e) => setImageFile(e.target.files[0])}
+          onChange={handleFileChange}
         />
 
-        <Button type="submit" disabled={isLoading}>
-          {isLoading ? 'Cadastrando...' : 'Cadastrar Peça'}
+        <Button type="submit" disabled={state.isLoading}>
+          {state.isLoading ? 'Cadastrando...' : 'Cadastrar Peça'}
         </Button>
 
-        {message && <Message type={message.type}>{message.text}</Message>}
+        {state.message && (
+          <Message type={state.message.type}>{state.message.text}</Message>
+        )}
       </Form>
     </Container>
   )
