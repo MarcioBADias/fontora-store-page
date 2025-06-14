@@ -30,7 +30,7 @@ const pendingOrdersReducer = (state, action) => {
   return state
 }
 
-const usePendingOrders = () => {
+export const usePendingOrders = () => {
   const [state, dispatch] = useReducer(pendingOrdersReducer, initialState)
 
   const fetchOrders = useCallback(async () => {
@@ -129,6 +129,5 @@ const usePendingOrders = () => {
     confirmOrderGroup,
     returnOrderGroup,
     toggleOrderExpand,
-    usePendingOrders,
   }
 }
